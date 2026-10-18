@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Kuzuia Zooming kwenye simu/browser -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MJ Internet - Experience Next-Gen Connectivity</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --card-border: rgba(226, 232, 240, 0.8);
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --accent: #d97706;
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --input-bg: #f8fafc;
+      --shadow-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+      user-select: none;
+    }
+
+    body { 
+      background: var(--bg-gradient); 
+      color: var(--text-main); 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      min-height: 100vh; 
+      padding: 20px 15px; 
+      touch-action: pan-x pan-y;
+    }
+
+    .landing-card { 
+      background: var(--card-bg); 
+      border: 1px solid var(--card-border); 
+      border-radius: 28px; 
+      width: 100%; 
+      max-width: 480px; 
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 30px var(--shadow-glow); 
+      overflow: hidden; 
+      padding: 35px 25px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    /* Glow Header Effect */
+    .landing-card::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 100px;
+      background: linear-gradient(135deg, #0284c7, #8b5cf6);
+      filter: blur(50px);
+      opacity: 0.3;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .brand-logo { 
+      font-size: 32px; 
+      font-weight: 900; 
+      letter-spacing: 2px; 
+      text-transform: uppercase; 
+      background: linear-gradient(135deg, #0284c7 0%, #8b5cf6 50%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .brand-tag { 
+      font-size: 11px; 
+      color: var(--accent); 
+      font-weight: 800; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      margin-bottom: 25px; 
+    }
+
+    /* Animated Hero Icon */
+    .hero-icon-wrapper {
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 22px;
+      background: linear-gradient(135deg, #0284c7, #8b5cf6, #ec4899);
+      border-radius: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      color: #ffffff;
+      box-shadow: 0 12px 25px rgba(139, 92, 246, 0.3);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 23px;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+
+    p.description {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .features-grid {
+      text-align: left;
+      background: var(--input-bg);
+      padding: 18px 20px;
+      border-radius: 16px;
+      margin-bottom: 28px;
+      border: 1px solid var(--card-border);
+    }
+
+    .feature-item {
+      font-size: 13px;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+    }
+
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .feature-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(2, 132, 199, 0.1);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    /* Action Buttons Area */
+    .action-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(2, 132, 199, 0.4);
+    }
+
+    .btn-web-portal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: #ffffff;
+      color: var(--text-main);
+      border: 2px solid #cbd5e1;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-web-portal:hover {
+      background: #f1f5f9;
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .app-info-meta {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-sub);
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-weight: 500;
+    }
+
+    .meta-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="landing-card">
+    <div class="brand-logo">MJ INTERNET</div>
+    <div class="brand-tag">High-Speed Digital Connectivity</div>
+
+    <div class="hero-icon-wrapper">
+      🚀
+    </div>
+
+    <h1>Fast, Reliable & Seamless Internet Services</h1>
+    <p class="description">
+      Unlock instant high-speed data package purchases, real-time OTP verification, and effortless order tracking across all your devices.
+    </p>
+
+    <!-- Highlighted Feature List -->
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <span>Instant High-Speed Data Packages</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔒</div>
+        <span>Secure OTP Authentication & Login</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📜</div>
+        <span>Real-Time Personal Order History</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🌗</div>
+        <span>Customizable Dark & Light Themes</span>
+      </div>
+    </div>
+
+    <!-- Dual Option Action Buttons -->
+    <div class="action-group">
+      <!-- 1. Download Android App Link -->
+      <a href="https://median.co/share/bnpokqj#apk" class="btn-download" download>
+        <span>📲</span>
+        <span>Download Official App (APK)</span>
+      </a>
+
+      <!-- 2. Web Portal Access Button -->
+      <a href="https://josephmick74-glitch.github.io/MJ-NTERNET-/" class="btn-web-portal">
+        <span>🌐</span>
+        <span>Launch MJ Web Portal</span>
+      </a>
+    </div>
+
+    <!-- Metadata Footnote -->
+    <div class="app-info-meta">
+      <span class="meta-badge">✓ 100% Safe</span>
+      <span class="meta-badge">✓ Fast Checkout</span>
+      <span class="meta-badge">✓ Always Online</span>
+    </div>
+  </div>
+
+</body>
+</html>
